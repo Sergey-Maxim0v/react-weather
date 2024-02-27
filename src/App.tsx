@@ -1,10 +1,5 @@
 function App() {
-
-    return (
-        <>
-            Weather
-        </>
-    )
+  return <>Weather</>;
 }
 
-export default App
+export default App;
