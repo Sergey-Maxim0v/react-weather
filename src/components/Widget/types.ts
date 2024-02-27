@@ -1,5 +1,5 @@
 export interface IWidget {
-  size: WIDGET_SIZE;
+  size?: WIDGET_SIZE;
   className?: string;
 }
 
