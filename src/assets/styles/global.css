@@ -1,0 +1,7 @@
+.app {
+  padding: min(120px, 10vh) min(40px, 10vw);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
