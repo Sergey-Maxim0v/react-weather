@@ -1,6 +1,5 @@
 export interface IGetWeather {
   data: IWeatherResponse;
-  cancel: VoidFunction;
   ok: boolean;
 }
 

@@ -1,26 +1,20 @@
+import { FC, RefObject, useRef } from "react";
+import { useGetWeatherCurrent } from "../../hooks/useGetWeatherCurrent";
 import { IWidget, WIDGET_SIZE } from "./types";
-import { FC, useEffect } from "react";
 import styles from "./styles.module.css";
-import getWeather from "../../api/getWeather";
-import getCoordinates from "../../api/getCoordinates";
+import { useIsVisibleElement } from "../../hooks/useIsVisibleElement";
 
 const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
-  useEffect(() => {
-    // TODO: hook
-    getWeather({ q: "52.7324 , 41.4313", lang: "ru" }).then((r) =>
-      console.log(r.data.current),
-    );
-  }, []);
+  const ref: RefObject<HTMLDivElement> = useRef(null);
 
-  useEffect(() => {
-    // TODO: hook
-    getCoordinates().then((r) =>
-      console.log(r.data.latitude, r.data.longitude),
-    );
-  }, []);
+  const isVisible = useIsVisibleElement(ref);
+  const weather = useGetWeatherCurrent({ isVisible });
+
+  console.log(isVisible);
+  console.log(weather);
 
   return (
-    <div className={`${className} ${styles[size]} ${styles.widget}`}>
+    <div ref={ref} className={`${className} ${styles[size]} ${styles.widget}`}>
       <p>TODO</p>
     </div>
   );
