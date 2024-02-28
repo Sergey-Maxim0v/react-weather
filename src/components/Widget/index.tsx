@@ -7,7 +7,7 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   useEffect(() => {
     // TODO: hook
     getWeather({ q: "52.7324 , 41.4313", lang: "ru" }).then((r) =>
-      console.log(r),
+      console.log(r.data),
     );
   }, []);
 

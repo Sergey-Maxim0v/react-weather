@@ -1,11 +1,6 @@
 import { URL_CURRENT } from "./listURL";
 import buildUrlWithParams from "../utils/buildUrlWithParams";
-
-export interface IWeather {
-  data: any;
-  cancel: VoidFunction;
-  ok: boolean;
-}
+import { IWeather, IWeatherResponse } from "./typesWeather";
 
 const getWeather = async ({
   q,
@@ -25,7 +20,7 @@ const getWeather = async ({
     ],
   });
 
-  const res = await fetch(url, {
+  const res = await fetch<IWeatherResponse>(url, {
     signal: controller.signal,
     method: "GET",
   });
