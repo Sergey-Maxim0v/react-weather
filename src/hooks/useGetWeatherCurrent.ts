@@ -10,8 +10,15 @@ export const useGetWeatherCurrent = ({
   interval?: number;
   isVisible: boolean;
 }) => {
-  const coordinates = useGetCoordinates();
   const [weather, setWeather] = useState<IWeatherResponse>();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  const {
+    coordinates,
+    isLoading: isLoadingQ,
+    isError: isLErrorQ,
+  } = useGetCoordinates();
 
   useEffect(() => {
     if (
@@ -30,6 +37,8 @@ export const useGetWeatherCurrent = ({
       const q = `${coordinates.latitude},${coordinates.longitude}`;
 
       try {
+        setIsLoading(true);
+
         const response = await getWeatherCurrent({
           controller,
           q,
@@ -41,7 +50,9 @@ export const useGetWeatherCurrent = ({
         }
       } catch (error) {
         console.warn("Error: getWeatherCurrent :::", error);
+        setIsError(true);
       } finally {
+        isLoading && setIsLoading(false);
         controller.abort();
         timerId = setTimeout(fetchWeather, interval);
       }
@@ -56,5 +67,9 @@ export const useGetWeatherCurrent = ({
     };
   }, [coordinates, interval, isVisible]);
 
-  return weather;
+  return {
+    weather,
+    isLoading: isLoadingQ || isLoading,
+    isError: isLErrorQ || isError,
+  };
 };
