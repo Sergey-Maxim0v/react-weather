@@ -1,50 +1,53 @@
-export interface IWeather {
+export interface IGetWeather {
   data: IWeatherResponse;
   cancel: VoidFunction;
   ok: boolean;
 }
 
-export enum WEATHER_CURRENT_KEYS {
-  last_updated_epoch = "last_updated_epoch",
-  last_updated = "last_updated",
-  temp_c = "temp_c",
-  temp_f = "temp_f",
-  is_day = "is_day",
-  condition = "condition",
-  wind_mph = "wind_mph",
-  wind_kph = "wind_kph",
-  wind_degree = "wind_degree",
-  wind_dir = "wind_dir",
-  pressure_mb = "pressure_mb",
-  pressure_in = "pressure_in",
-  precip_mm = "precip_mm",
-  precip_in = "precip_in",
-  humidity = "humidity",
-  cloud = "cloud",
-  feelslike_c = "feelslike_c",
-  feelslike_f = "feelslike_f",
-  vis_km = "vis_km",
-  vis_miles = "vis_miles",
-  uv = "uv",
-  gust_mph = "gust_mph",
-  gust_kph = "gust_kph",
+export interface IWeatherResponseCondition {
+  code: number;
+  icon: string;
+  text: string;
 }
 
-export enum WEATHER_LOCATION_KEYS {
-  name = "name",
-  region = "region",
-  country = "country",
-  lat = "lat",
-  lon = "lon",
-  tz_id = "tz_id",
-  localtime_epoch = "localtime_epoch",
-  localtime = "localtime",
+export interface IWeatherResponseCurrent {
+  last_updated_epoch: number;
+  last_updated: string;
+  temp_c: number;
+  temp_f: number;
+  is_day: 0 | 1;
+  condition: IWeatherResponseCondition;
+  wind_mph: number;
+  wind_kph: number;
+  wind_degree: number;
+  wind_dir: string;
+  pressure_mb: number;
+  pressure_in: number;
+  precip_mm: number;
+  precip_in: number;
+  humidity: number;
+  cloud: number;
+  feelslike_c: number;
+  feelslike_f: number;
+  vis_km: number;
+  vis_miles: number;
+  uv: number;
+  gust_mph: number;
+  gust_kph: number;
+}
+
+export interface IWeatherResponseLocation {
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  tz_id: string;
+  localtime_epoch: string;
+  localtime: string;
 }
 
 export interface IWeatherResponse {
-  location: { [key: WEATHER_LOCATION_KEYS]: string | number };
-  current: {
-    condition: { [key: WEATHER_CURRENT_KEYS.condition]: string | number };
-    [key: WEATHER_CURRENT_KEYS]: string | number;
-  };
+  location: IWeatherResponseLocation;
+  current: IWeatherResponseCurrent;
 }

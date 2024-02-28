@@ -1,6 +1,6 @@
 import { URL_CURRENT } from "./listURL";
 import buildUrlWithParams from "../utils/buildUrlWithParams";
-import { IWeather, IWeatherResponse } from "./typesWeather";
+import { IGetWeather, IWeatherResponse } from "./typesWeather";
 
 const getWeather = async ({
   q,
@@ -8,7 +8,7 @@ const getWeather = async ({
 }: {
   q: string;
   lang: string;
-}): Promise<IWeather> => {
+}): Promise<IGetWeather> => {
   const controller = new AbortController();
 
   const url = buildUrlWithParams({
@@ -20,14 +20,16 @@ const getWeather = async ({
     ],
   });
 
-  const res = await fetch<IWeatherResponse>(url, {
+  const res = await fetch(url, {
     signal: controller.signal,
     method: "GET",
   });
 
-  const data = await res.json();
-
-  return { data, cancel: () => controller.abort(), ok: res.ok };
+  return res.json().then((data: IWeatherResponse) => ({
+    data,
+    cancel: () => controller.abort(),
+    ok: res.ok,
+  }));
 };
 
 export default getWeather;
