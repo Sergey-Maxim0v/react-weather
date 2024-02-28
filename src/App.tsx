@@ -20,9 +20,9 @@ function App() {
         </button>
       </div>
 
-      <Widget size={WIDGET_SIZE.small} />
+      {/*<Widget size={WIDGET_SIZE.small} />*/}
       <Widget size={size} />
-      <Widget size={WIDGET_SIZE.large} />
+      {/*<Widget size={WIDGET_SIZE.large} />*/}
 
       <div className="powered__row">
         <Powered className="powered" />

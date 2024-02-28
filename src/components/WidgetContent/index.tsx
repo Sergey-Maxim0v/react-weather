@@ -13,6 +13,7 @@ const WidgetContent: FC<IWidgetContent> = ({ className, data }) => {
         className={styles.icon}
       />
       <p>TODO: ветер {data.current.wind_kph}</p>
+      <p>TODO: направление ветра {data.current.wind_degree}</p>
       <p>TODO: направление ветра {data.current.wind_dir}</p>
       <p>TODO: осадки {data.current.precip_mm}</p>
       <p>TODO: давление {data.current.pressure_mb}</p>

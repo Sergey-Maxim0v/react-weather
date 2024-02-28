@@ -31,9 +31,9 @@ export const useGetWeatherCurrent = ({
     }
 
     let timerId: number;
+    const controller = new AbortController();
 
     const fetchWeather = async () => {
-      const controller = new AbortController();
       const q = `${coordinates.latitude},${coordinates.longitude}`;
 
       try {
@@ -52,8 +52,7 @@ export const useGetWeatherCurrent = ({
         console.warn("Error: getWeatherCurrent :::", error);
         setIsError(true);
       } finally {
-        isLoading && setIsLoading(false);
-        controller.abort();
+        setIsLoading(false);
         timerId = setTimeout(fetchWeather, interval);
       }
     };
@@ -63,6 +62,7 @@ export const useGetWeatherCurrent = ({
     );
 
     return () => {
+      controller?.abort();
       clearTimeout(timerId);
     };
   }, [coordinates, interval, isVisible]);
