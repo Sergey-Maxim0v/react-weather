@@ -1,0 +1,40 @@
+.buttons {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  margin: 1rem;
+  padding: 0.5rem;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+  color: white;
+  background-color: gray;
+}
+
+.powered {
+}
+
+.powered__row {
+  width: 100%;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sample-loader {
+  width: 48px;
+  height: 48px;
+}
