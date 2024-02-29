@@ -2,7 +2,6 @@ import Widget from "./components/Widget";
 import { WIDGET_SIZE } from "./components/Widget/types";
 import Powered from "./components/Powered";
 import { useState } from "react";
-import Loader from "./components/Loader";
 
 function App() {
   const [size, setSize] = useState<WIDGET_SIZE>(WIDGET_SIZE.medium);
@@ -21,21 +20,9 @@ function App() {
         </button>
       </div>
 
-      {/*<Widget size={WIDGET_SIZE.small} />*/}
+      <Widget size={WIDGET_SIZE.small} />
       <Widget size={size} />
-      {/*<Widget size={WIDGET_SIZE.large} />*/}
-
-      <div
-        style={{
-          marginTop: "3rem",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
-        <Loader className="sample-loader" />
-      </div>
+      <Widget size={WIDGET_SIZE.large} />
 
       <div className="powered__row">
         <Powered className="powered" />

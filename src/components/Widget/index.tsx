@@ -13,11 +13,9 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   const isVisible = useIsVisibleElement(ref);
   const { weather, isLoading, isError } = useGetWeatherCurrent({ isVisible });
 
-  console.log(isLoading, isError, weather);
-
   const getContent = () => {
     if (weather) {
-      return <WidgetContent data={weather} />;
+      return <WidgetContent data={weather} isLoading={isLoading} size={size} />;
     } else if (isLoading) {
       return <Loader />;
     }
@@ -28,7 +26,10 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   };
 
   return (
-    <div ref={ref} className={`${className} ${styles[size]} ${styles.widget}`}>
+    <div
+      ref={ref}
+      className={`${className ?? ""} ${styles[size]} ${styles.widget}`}
+    >
       {getContent()}
     </div>
   );

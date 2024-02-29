@@ -1,5 +1,99 @@
 .content {
+  position: relative;
+}
+
+.content * {
+  background-color: transparent;
+}
+
+._small.content {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "icon city city" "icon temp wind";
+  grid-column-gap: 10px;
+  align-items: center;
+}
+
+._medium.content {
+}
+
+._large.content {
+}
+
+.unit {
+  margin-left: 0.2rem;
+  font-size: 1.5rem;
+}
+
+/*  Icon  */
+.iconRow {
+  grid-area: icon;
+
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .icon {
+  width: 100%;
+  height: 100%;
+}
+
+.iconLoader {
+  width: 70%;
+  height: 70%;
+}
+
+/*  Icon name */
+.name {
+  grid-area: icon_name;
+  margin-top: -0.4rem;
+  font-size: 1rem;
+  text-transform: lowercase;
+}
+
+/*  City  */
+.city {
+  grid-area: city;
+  font-size: 1rem;
+}
+
+/*  Temp */
+.temp {
+  grid-area: temp;
+  font-size: 2rem;
+}
+
+/*  wind  */
+.wind {
+  grid-area: wind;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.windSpeed {
+  font-size: 2rem;
+}
+
+.windSpeed .unit {
+  margin-left: 0.2rem;
+}
+
+.windDirection {
+  margin-left: 0.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0099ff;
+}
+
+.windDirection > * {
+  width: 100%;
+  height: 100%;
 }

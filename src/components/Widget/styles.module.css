@@ -1,14 +1,19 @@
 .widget {
+  padding: 1rem;
+  box-shadow: 0 0 1rem grey;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
 }
 
 ._small {
-  border: 1px solid blueviolet;
+  padding: 0.5rem 1rem;
+  min-height: 4.75rem;
+  min-width: 14.9rem;
 }
 
 ._medium {
-  border: 1px solid blue;
 }
 
 ._large {
-  border: 1px solid violet;
 }
