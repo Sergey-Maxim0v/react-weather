@@ -9,16 +9,39 @@
 ._small.content {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   grid-template-areas: "icon city city" "icon temp wind";
-  grid-column-gap: 10px;
+  grid-column-gap: 0.7rem;
   align-items: center;
 }
 
 ._medium.content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas: "city city" "icon name" "icon feelslike" "temp wind" ". pressure";
+  grid-column-gap: 1.2rem;
+  align-items: center;
 }
 
 ._large.content {
+}
+
+.description {
+  margin-right: 0.3rem;
+  font-size: 1.2rem;
+}
+
+._small .description {
+  display: none;
+}
+
+.value {
+  font-size: 1.5rem;
+}
+
+._small .value {
+  font-size: 2rem;
 }
 
 .unit {
@@ -29,17 +52,23 @@
 /*  Icon  */
 .iconRow {
   grid-area: icon;
-
-  width: 60px;
-  height: 60px;
+  width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+._small .iconRow {
+  width: 60px;
+}
+
+._medium .iconRow {
+}
+
 .icon {
   width: 100%;
   height: 100%;
+  max-width: 80px;
 }
 
 .iconLoader {
@@ -47,12 +76,9 @@
   height: 70%;
 }
 
-/*  Icon name */
+/*  Name */
 .name {
-  grid-area: icon_name;
-  margin-top: -0.4rem;
-  font-size: 1rem;
-  text-transform: lowercase;
+  grid-area: name;
 }
 
 /*  City  */
@@ -64,7 +90,16 @@
 /*  Temp */
 .temp {
   grid-area: temp;
+  font-size: 1.5rem;
+  text-align: center;
+}
+._small .temp {
   font-size: 2rem;
+}
+
+/*  Feelslike */
+.feelslike {
+  grid-area: feelslike;
 }
 
 /*  wind  */
@@ -72,6 +107,9 @@
   grid-area: wind;
   display: flex;
   align-items: center;
+}
+
+._small .wind {
   justify-content: center;
 }
 
@@ -79,21 +117,33 @@
   font-size: 2rem;
 }
 
-.windSpeed .unit {
-  margin-left: 0.2rem;
+._medium .windSpeed {
+  display: flex;
+  align-items: flex-end;
+}
+
+._medium .windSpeed .description {
+  padding-bottom: 1px;
 }
 
 .windDirection {
   margin-left: 0.3rem;
   width: 1.5rem;
   height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #0099ff;
 }
 
 .windDirection > * {
   width: 100%;
   height: 100%;
+}
+
+/*  Precipitation */
+.precip {
+  grid-area: precip;
+}
+
+/*  Pressure */
+.pressure {
+  grid-area: pressure;
 }

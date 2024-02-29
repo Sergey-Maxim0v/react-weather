@@ -1,4 +1,5 @@
 .app {
+  font-family: sans-serif;
   padding: min(120px, 10vh) min(40px, 10vw);
   display: flex;
   flex-wrap: wrap;

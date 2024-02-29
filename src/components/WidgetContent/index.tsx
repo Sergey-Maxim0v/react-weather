@@ -14,9 +14,11 @@ const WidgetContent: FC<IWidgetContent> = ({
   isLoading,
 }) => {
   const windSpeed = Math.round((data.current.wind_kph * 5) / 18);
+  const feelslike = Math.round(data.current.feelslike_c);
   const temp = Math.round(data.current.temp_c);
+  const pressure = Math.floor(data.current.pressure_in * 25.4);
 
-  const isName = data.current.condition.text.length < 15;
+  console.log(data);
 
   return (
     <div className={` ${styles[size]} ${className ?? ""} ${styles.content}`}>
@@ -28,35 +30,61 @@ const WidgetContent: FC<IWidgetContent> = ({
         ) : (
           <Icon
             link={"https:" + data.current.condition.icon}
-            text={data.current.condition.text}
+            alt={data.current.condition.text}
             className={styles.icon}
           />
         )}
       </div>
 
-      {isName && size !== WIDGET_SIZE.small && (
-        <p className={styles.name}>{data.current.condition.text}</p>
+      {size !== WIDGET_SIZE.small && (
+        <p className={styles.name}>
+          <span className={styles.description}>
+            {data.current.condition.text}
+          </span>
+        </p>
       )}
 
       <p className={styles.temp}>
-        <span>{temp}</span>
+        <span className={styles.value}>{temp}</span>
         <span className={styles.unit}>C</span>
       </p>
 
+      {size !== WIDGET_SIZE.small && (
+        <p className={styles.feelslike}>
+          <span className={styles.description}>Ощущается как</span>
+          <span className={styles.value}>{feelslike}</span>
+          <span className={styles.unit}>C</span>
+        </p>
+      )}
+
       <div className={styles.wind}>
         <p className={styles.windSpeed}>
-          <span>{windSpeed}</span>
+          <span className={styles.description}>Ветер</span>
+          <span className={styles.value}>{windSpeed}</span>
           <span className={styles.unit}>м/с</span>
         </p>
 
-        <p className={styles.windDirection}>
-          <WindArrowIcon degree={data.current.wind_degree} />
-          {/*<span className={styles.unit}>{data.current.wind_dir}</span>*/}
-        </p>
+        <WindArrowIcon
+          className={styles.windDirection}
+          degree={data.current.wind_degree}
+        />
       </div>
 
-      {/*<p>TODO: осадки {data.current.precip_mm}</p>*/}
-      {/*<p>TODO: давление {data.current.pressure_mb}</p>*/}
+      {size === WIDGET_SIZE.large && (
+        <div className={styles.precip}>
+          <span className={styles.description}>Осадки</span>
+          <span className={styles.value}>{data.current.precip_mm}</span>
+          <span className={styles.unit}>мм</span>
+        </div>
+      )}
+
+      {size !== WIDGET_SIZE.small && (
+        <div className={styles.pressure}>
+          <span className={styles.description}>Атм. давление</span>
+          <span className={styles.value}>{pressure}</span>
+          <span className={styles.unit}>мм</span>
+        </div>
+      )}
 
       {/*<p>TODO: прогноз</p>*/}
     </div>

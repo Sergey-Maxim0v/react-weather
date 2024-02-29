@@ -1,10 +1,14 @@
 import { FC } from "react";
 import { IWindArrowIcon } from "./types";
 
-const WindArrowIcon: FC<IWindArrowIcon> = ({ degree }) => {
+const WindArrowIcon: FC<IWindArrowIcon> = ({ degree, className }) => {
   return (
     <svg
-      style={{ transform: `rotateZ(${degree}deg)` }}
+      style={{
+        transform: `rotateZ(${degree}deg)`,
+        transition: "transform 0.3s",
+      }}
+      className={className ?? ""}
       fill="currentColor"
       height="800px"
       width="800px"

@@ -1,5 +1,5 @@
 export interface IIcon {
   link: string;
-  text: string;
+  alt: string;
   className?: string;
 }
