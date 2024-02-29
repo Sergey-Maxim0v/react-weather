@@ -1,0 +1,15 @@
+.montserrat-alternates {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+._normal {
+  font-style: normal;
+}
+
+._regular {
+  font-weight: 400;
+}
+
+._semibold {
+  font-weight: 600;
+}

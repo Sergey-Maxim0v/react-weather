@@ -28,7 +28,10 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   return (
     <div
       ref={ref}
-      className={`${className ?? ""} ${styles[size]} ${styles.widget}`}
+      className={
+        `${className ?? ""} ${styles[size]} ${styles.widget}` +
+        " montserrat-alternates _normal _regular"
+      }
     >
       {getContent()}
     </div>
