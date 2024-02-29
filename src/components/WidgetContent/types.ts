@@ -1,9 +1,9 @@
 import { IWeatherResponse } from "../../api/typesWeather";
-import { IWidget } from "../Widget/types";
+import { WIDGET_SIZE } from "../Widget/types";
 
 export interface IWidgetContent {
   data: IWeatherResponse;
-  size: IWidget["size"];
+  size: WIDGET_SIZE;
   isLoading?: boolean;
   className?: string;
 }
