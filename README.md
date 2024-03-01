@@ -40,7 +40,7 @@ npm run lint
 
 ## UI-component Weather
 
-The application receives weather coordinates from [weatherapi.com](https://www.weatherapi.com/), weather data from [ipapi.co](https://ipapi.co/).
+The application receives weather from [weatherapi.com](https://www.weatherapi.com/), coordinates from [ipapi.co](https://ipapi.co/).
 
 ---
 
