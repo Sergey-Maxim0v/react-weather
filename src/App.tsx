@@ -6,23 +6,23 @@ import { useState } from "react";
 function App() {
   const [size, setSize] = useState<WIDGET_SIZE>(WIDGET_SIZE.medium);
 
+  const sizeArr = [WIDGET_SIZE.small, WIDGET_SIZE.medium, WIDGET_SIZE.large];
+
   return (
     <div className="app">
       <div className="buttons">
-        <button onClick={() => setSize(WIDGET_SIZE.small)} className="button">
-          Small
-        </button>
-        <button onClick={() => setSize(WIDGET_SIZE.medium)} className="button">
-          Medium
-        </button>
-        <button onClick={() => setSize(WIDGET_SIZE.large)} className="button">
-          Large
-        </button>
+        {sizeArr.map((el) => (
+          <button
+            key={el}
+            onClick={() => setSize(el)}
+            className={`${el === size ? "_active" : ""} button`}
+          >
+            {el.slice(1).toUpperCase()}
+          </button>
+        ))}
       </div>
 
-      <Widget size={WIDGET_SIZE.small} />
       <Widget size={size} />
-      <Widget size={WIDGET_SIZE.large} />
 
       <div className="powered__row">
         <Powered className="powered" />

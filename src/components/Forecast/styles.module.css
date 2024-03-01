@@ -1,0 +1,8 @@
+.forecast {
+  margin-top: 1rem;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}

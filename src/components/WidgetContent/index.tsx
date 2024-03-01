@@ -6,6 +6,7 @@ import Loader from "../Loader";
 import styles from "./styles.module.css";
 import WindArrowIcon from "../windArrowIcon";
 import { WIDGET_SIZE } from "../Widget/types";
+import Forecast from "../Forecast";
 
 const WidgetContent: FC<IWidgetContent> = ({
   className,
@@ -14,11 +15,9 @@ const WidgetContent: FC<IWidgetContent> = ({
   isLoading,
 }) => {
   const windSpeed = Math.round((data.current.wind_kph * 5) / 18);
-  const feelslike = Math.round(data.current.feelslike_c);
+  const feelsLike = Math.round(data.current.feelslike_c);
   const temp = Math.round(data.current.temp_c);
   const pressure = Math.floor(data.current.pressure_in * 25.4);
-
-  console.log(data);
 
   return (
     <div className={` ${styles[size]} ${className ?? ""} ${styles.content}`}>
@@ -52,7 +51,7 @@ const WidgetContent: FC<IWidgetContent> = ({
       {size !== WIDGET_SIZE.small && (
         <p className={styles.feelslike}>
           <span className={styles.description}>Ощущается как</span>
-          <span className={styles.value}>{feelslike}</span>
+          <span className={styles.value}>{feelsLike}</span>
           <span className={styles.unit}>C</span>
         </p>
       )}
@@ -70,14 +69,6 @@ const WidgetContent: FC<IWidgetContent> = ({
         />
       </div>
 
-      {size === WIDGET_SIZE.large && (
-        <div className={styles.precip}>
-          <span className={styles.description}>Осадки</span>
-          <span className={styles.value}>{data.current.precip_mm}</span>
-          <span className={styles.unit}>мм</span>
-        </div>
-      )}
-
       {size !== WIDGET_SIZE.small && (
         <div className={styles.pressure}>
           <span className={styles.description}>Атм. давление</span>
@@ -86,7 +77,7 @@ const WidgetContent: FC<IWidgetContent> = ({
         </div>
       )}
 
-      {/*<p>TODO: прогноз</p>*/}
+      {size === WIDGET_SIZE.large && <Forecast className={styles.forecast} />}
     </div>
   );
 };

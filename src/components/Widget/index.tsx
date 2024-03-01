@@ -1,11 +1,12 @@
 import { FC, RefObject, useRef } from "react";
-import { useGetWeatherCurrent } from "../../hooks/useGetWeatherCurrent";
 import { IWidget, WIDGET_SIZE } from "./types";
-import styles from "./styles.module.css";
+import { useGetWeatherCurrent } from "../../hooks/useGetWeatherCurrent";
 import { useIsVisibleElement } from "../../hooks/useIsVisibleElement";
 import ErrorMessage from "../ErrorMessage";
 import Loader from "../Loader";
 import WidgetContent from "../WidgetContent";
+
+import styles from "./styles.module.css";
 
 const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   const ref: RefObject<HTMLDivElement> = useRef(null);
@@ -14,10 +15,10 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   const { weather, isLoading, isError } = useGetWeatherCurrent({ isVisible });
 
   const getContent = () => {
-    if (weather) {
+    if (weather && size) {
       return <WidgetContent data={weather} isLoading={isLoading} size={size} />;
     } else if (isLoading) {
-      return <Loader />;
+      return <Loader className={styles.loader} />;
     }
 
     if (isError) {

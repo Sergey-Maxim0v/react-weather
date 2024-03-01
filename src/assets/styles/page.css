@@ -23,6 +23,11 @@
   background-color: gray;
 }
 
+.button._active {
+  color: white;
+  background-color: gray;
+}
+
 .powered {
 }
 

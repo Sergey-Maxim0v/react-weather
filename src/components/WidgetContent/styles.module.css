@@ -25,6 +25,12 @@
 }
 
 ._large.content {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas: "city city" "icon name" "icon feelslike" "temp wind" ". pressure" "forecast forecast";
+  grid-column-gap: 1.2rem;
+  align-items: center;
 }
 
 .description {
@@ -52,17 +58,10 @@
 /*  Icon  */
 .iconRow {
   grid-area: icon;
-  width: auto;
+  width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-._small .iconRow {
-  width: 60px;
-}
-
-._medium .iconRow {
 }
 
 .icon {
@@ -117,7 +116,8 @@
   font-size: 2rem;
 }
 
-._medium .windSpeed {
+._medium .windSpeed,
+._large .windSpeed {
   display: flex;
   align-items: flex-end;
 }
@@ -138,12 +138,12 @@
   height: 100%;
 }
 
-/*  Precipitation */
-.precip {
-  grid-area: precip;
-}
-
 /*  Pressure */
 .pressure {
   grid-area: pressure;
+}
+
+/*  Forecast */
+.forecast {
+  grid-area: forecast;
 }

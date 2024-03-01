@@ -13,7 +13,14 @@
 }
 
 ._medium {
+  min-height: 10.88rem;
+  min-width: 22.65rem;
 }
 
 ._large {
+  min-width: 22.65rem;
+}
+
+.loader {
+  margin: auto;
 }
