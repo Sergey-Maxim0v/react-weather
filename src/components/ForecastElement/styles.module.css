@@ -3,3 +3,24 @@
   flex-direction: column;
   align-items: center;
 }
+
+.date {
+}
+
+.icon {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+
+.temp {
+  font-size: 1.2rem;
+}
+
+.unit {
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.unit:last-child {
+  margin-right: 0;
+}

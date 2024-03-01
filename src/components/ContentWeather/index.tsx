@@ -82,7 +82,6 @@ const ContentWeather: FC<IContentWeather> = ({
         data.forecast.forecastday.length && (
           <Forecast
             data={data.forecast.forecastday}
-            isLoading={isLoading}
             className={styles.forecast}
           />
         )}

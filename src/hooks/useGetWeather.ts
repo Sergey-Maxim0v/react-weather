@@ -4,7 +4,7 @@ import { useGetCoordinates } from "./useGetCoordinates";
 import getWeather from "../api/getWeather";
 
 export const useGetWeather = ({
-  interval = 300000,
+  interval = 1000 * 60 * 5, // 5 минут
   isVisible,
 }: {
   interval?: number;
