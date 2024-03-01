@@ -4,7 +4,7 @@ import Powered from "./components/Powered";
 import { useState } from "react";
 
 function App() {
-  const [size, setSize] = useState<WIDGET_SIZE>(WIDGET_SIZE.medium);
+  const [size, setSize] = useState<WIDGET_SIZE>(WIDGET_SIZE.large);
 
   const sizeArr = [WIDGET_SIZE.small, WIDGET_SIZE.medium, WIDGET_SIZE.large];
 

@@ -6,3 +6,11 @@
   align-items: stretch;
   justify-content: space-between;
 }
+
+.element {
+  margin-right: 1rem;
+  width: calc(100% / 3);
+}
+.element:last-child {
+  margin-right: 0;
+}

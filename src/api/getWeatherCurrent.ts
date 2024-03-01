@@ -1,6 +1,7 @@
 import { URL_CURRENT } from "./listURL";
 import buildUrlWithParams from "../utils/buildUrlWithParams";
-import { IGetWeather, IWeatherResponse } from "./typesWeather";
+import { IGetWeather, IWeather } from "./typesWeather";
+import { WEATHER_API_KEY } from "../constants/weatherApiKey";
 
 export const getWeatherCurrent = async ({
   controller,
@@ -16,7 +17,7 @@ export const getWeatherCurrent = async ({
     options: [
       { name: "q", value: q },
       { name: "lang", value: lang },
-      { name: "key", value: "1e4a8256516046e3bcf202314242702" },
+      { name: "key", value: WEATHER_API_KEY },
     ],
   });
 
@@ -25,7 +26,7 @@ export const getWeatherCurrent = async ({
     method: "GET",
   });
 
-  return res.json().then((data: IWeatherResponse) => ({
+  return res.json().then((data: IWeather) => ({
     data,
     ok: res.ok,
   }));

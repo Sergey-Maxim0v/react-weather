@@ -1,6 +1,6 @@
 import Icon from "../Icon";
 import { FC } from "react";
-import { IWidgetContent } from "./types";
+import { IContentWeather } from "./types";
 import Loader from "../Loader";
 
 import styles from "./styles.module.css";
@@ -8,7 +8,7 @@ import WindArrowIcon from "../windArrowIcon";
 import { WIDGET_SIZE } from "../Widget/types";
 import Forecast from "../Forecast";
 
-const WidgetContent: FC<IWidgetContent> = ({
+const ContentWeather: FC<IContentWeather> = ({
   className,
   size,
   data,
@@ -52,7 +52,7 @@ const WidgetContent: FC<IWidgetContent> = ({
         <p className={styles.feelslike}>
           <span className={styles.description}>Ощущается как</span>
           <span className={styles.value}>{feelsLike}</span>
-          <span className={styles.unit}>C</span>
+          {/*<span className={styles.unit}>C</span>*/}
         </p>
       )}
 
@@ -77,9 +77,17 @@ const WidgetContent: FC<IWidgetContent> = ({
         </div>
       )}
 
-      {size === WIDGET_SIZE.large && <Forecast className={styles.forecast} />}
+      {size === WIDGET_SIZE.large &&
+        data.forecast &&
+        data.forecast.forecastday.length && (
+          <Forecast
+            data={data.forecast.forecastday}
+            isLoading={isLoading}
+            className={styles.forecast}
+          />
+        )}
     </div>
   );
 };
 
-export default WidgetContent;
+export default ContentWeather;

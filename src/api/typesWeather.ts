@@ -1,21 +1,21 @@
 export interface IGetWeather {
-  data: IWeatherResponse;
+  data: IWeather;
   ok: boolean;
 }
 
-export interface IWeatherResponseCondition {
+export interface IWeatherCondition {
   code: number;
   icon: string;
   text: string;
 }
 
-export interface IWeatherResponseCurrent {
+export interface IWeatherCurrent {
   last_updated_epoch: number;
   last_updated: string;
   temp_c: number;
   temp_f: number;
   is_day: 0 | 1;
-  condition: IWeatherResponseCondition;
+  condition: IWeatherCondition;
   wind_mph: number;
   wind_kph: number;
   wind_degree: number;
@@ -35,7 +35,7 @@ export interface IWeatherResponseCurrent {
   gust_kph: number;
 }
 
-export interface IWeatherResponseLocation {
+export interface IWeatherLocation {
   name: string;
   region: string;
   country: string;
@@ -46,7 +46,49 @@ export interface IWeatherResponseLocation {
   localtime: string;
 }
 
-export interface IWeatherResponse {
-  location: IWeatherResponseLocation;
-  current: IWeatherResponseCurrent;
+export interface IForecastAstro {
+  is_moon_up: number;
+  is_sun_up: number;
+  moon_illumination: number;
+  moon_phase: string;
+  moonrise: string;
+  moonset: string;
+  sunrise: string;
+  sunset: string;
+}
+
+export interface IForecastDayWeather {
+  avghumidity: number;
+  avgtemp_c: number;
+  avgtemp_f: number;
+  avgvis_km: number;
+  avgvis_miles: number;
+  condition: IWeatherCondition;
+  daily_chance_of_rain: number;
+  daily_chance_of_snow: number;
+  daily_will_it_rain: number;
+  daily_will_it_snow: number;
+  maxtemp_c: number;
+  maxtemp_f: number;
+  maxwind_kph: number;
+  maxwind_mph: number;
+  mintemp_c: number;
+  mintemp_f: number;
+  totalprecip_in: number;
+  totalprecip_mm: number;
+  totalsnow_cm: number;
+  uv: number;
+}
+
+export interface IForecastDay {
+  astro: IForecastAstro;
+  date: "string";
+  date_epoch: number;
+  day: IForecastDayWeather;
+}
+
+export interface IWeather {
+  location: IWeatherLocation;
+  current: IWeatherCurrent;
+  forecast: { forecastday: IForecastDay[] };
 }

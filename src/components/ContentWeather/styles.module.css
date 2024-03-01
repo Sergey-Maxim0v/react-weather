@@ -58,7 +58,8 @@
 /*  Icon  */
 .iconRow {
   grid-area: icon;
-  width: 60px;
+  width: 3.75rem;
+  min-height: 3.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,8 +72,8 @@
 }
 
 .iconLoader {
-  width: 70%;
-  height: 70%;
+  width: 2.75rem;
+  height: 2.75rem;
 }
 
 /*  Name */

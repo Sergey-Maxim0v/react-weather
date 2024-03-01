@@ -1,7 +1,7 @@
 import { IForecastDay } from "../../api/typesWeather";
 
-export interface IForecast {
-  data: IForecastDay[];
+export interface IForecastElement {
+  weather: IForecastDay;
   isLoading: boolean;
   className?: string;
 }

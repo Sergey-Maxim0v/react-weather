@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getWeatherCurrent } from "../api/getWeatherCurrent";
-import { useGetCoordinates } from "./useGetCoordinates";
 import { IWeather } from "../api/typesWeather";
+import { useGetCoordinates } from "./useGetCoordinates";
+import getWeather from "../api/getWeather";
 
-export const useGetWeatherCurrent = ({
+export const useGetWeather = ({
   interval = 300000,
   isVisible,
 }: {
@@ -17,7 +17,7 @@ export const useGetWeatherCurrent = ({
   const {
     coordinates,
     isLoading: isLoadingQ,
-    isError: isErrorQ,
+    isError: isLErrorQ,
   } = useGetCoordinates();
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const useGetWeatherCurrent = ({
       try {
         setIsLoading(true);
 
-        const response = await getWeatherCurrent({
+        const response = await getWeather({
           controller,
           q,
           lang: "ru",
@@ -58,7 +58,7 @@ export const useGetWeatherCurrent = ({
     };
 
     fetchWeather().catch((error) =>
-      console.warn("Error: useGetWeatherCurrent :::", error),
+      console.warn("Error: useGetWeather :::", error),
     );
 
     return () => {
@@ -70,6 +70,6 @@ export const useGetWeatherCurrent = ({
   return {
     weather,
     isLoading: isLoadingQ || isLoading,
-    isError: isErrorQ || isError,
+    isError: isLErrorQ || isError,
   };
 };
