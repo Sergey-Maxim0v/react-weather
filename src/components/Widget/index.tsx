@@ -23,7 +23,7 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
       return <Loader className={styles.loader} />;
     }
 
-    if (isError) {
+    if (isError || (!isLoading && !weather)) {
       return <ErrorMessage />;
     }
   };
