@@ -11,6 +11,10 @@
 
 ---
 
+![screenshot page](public/screenshot-page.png)
+
+---
+
 ## Scripts
 
 ```bash
@@ -33,3 +37,14 @@ npm run preview
 npm run lint
 ```
 ---
+
+## UI-component Weather
+
+The application receives weather coordinates from [weatherapi.com](https://www.weatherapi.com/), weather data from [ipapi.co](https://ipapi.co/).
+
+---
+
+![screenshot small](public/screenshot-small.png)
+![screenshot medium](public/screenshot-medium.png)
+![screenshot large](public/screenshot-large.png)
+
