@@ -1,9 +1,10 @@
 import styles from "./styles.module.css";
 
-const ErrorMessage = ({ errorMessage }: { errorMessage?: string }) => {
+const ErrorMessage = ({ errorMessage }: { errorMessage: string }) => {
   return (
     <div className={styles.error}>
-      {errorMessage ?? "Ошибка получения погоды"}
+      <p>Ошибка получения погоды:</p>
+      <p>{errorMessage.toString()}</p>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   const ref: RefObject<HTMLDivElement> = useRef(null);
 
   const isVisible = useIsVisibleElement(ref);
-  const { weather, isLoading, isError } = useGetWeather({ isVisible });
+  const { weather, isLoading, error } = useGetWeather({ isVisible });
 
   const getContent = () => {
     if (weather && size) {
@@ -23,8 +23,8 @@ const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
       return <Loader className={styles.loader} />;
     }
 
-    if (isError || (!isLoading && !weather)) {
-      return <ErrorMessage />;
+    if (error) {
+      return <ErrorMessage errorMessage={error} />;
     }
   };
 

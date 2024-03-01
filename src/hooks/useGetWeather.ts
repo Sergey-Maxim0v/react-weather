@@ -11,13 +11,13 @@ export const useGetWeather = ({
   isVisible: boolean;
 }) => {
   const [weather, setWeather] = useState<IWeather>();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>();
 
   const {
     coordinates,
     isLoading: isLoadingQ,
-    isError: isLErrorQ,
+    error: errorQ,
   } = useGetCoordinates();
 
   useEffect(() => {
@@ -46,11 +46,13 @@ export const useGetWeather = ({
         });
 
         if (response.ok) {
+          setError(undefined);
           setWeather(response.data);
         }
       } catch (error) {
         console.warn("Error: getWeatherCurrent :::", error);
-        setIsError(true);
+
+        setError("weatherapi.com: " + error);
       } finally {
         setIsLoading(false);
         timerId = setTimeout(fetchWeather, interval);
@@ -70,6 +72,6 @@ export const useGetWeather = ({
   return {
     weather,
     isLoading: isLoadingQ || isLoading,
-    isError: isLErrorQ || isError,
+    error: errorQ || error,
   };
 };

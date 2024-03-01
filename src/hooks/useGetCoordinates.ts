@@ -9,7 +9,7 @@ export interface IUseCoordinates {
 export const useGetCoordinates = () => {
   const [coordinates, setCoordinates] = useState<IUseCoordinates | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<string>();
 
   useEffect(() => {
     let isMounted = true;
@@ -26,11 +26,11 @@ export const useGetCoordinates = () => {
             latitude: response.data.latitude,
             longitude: response.data.longitude,
           });
-          setIsError(false);
+          setError(undefined);
         }
       } catch (error) {
         if (isMounted) {
-          setIsError(true);
+          setError("ipapi.co: " + error);
           console.warn("Error: getCoordinates :::", error);
         }
       } finally {
@@ -50,5 +50,5 @@ export const useGetCoordinates = () => {
     };
   }, []);
 
-  return { coordinates, isLoading, isError };
+  return { coordinates, isLoading, error };
 };

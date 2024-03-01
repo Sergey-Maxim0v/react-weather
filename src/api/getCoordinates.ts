@@ -1,6 +1,9 @@
 import { ICoordinatesData, IGetCoordinates } from "./typesCoordinates";
 import { URL_IPAPI_CO } from "./listURL";
 
+/**
+ * @see https://ipapi.co/api/
+ */
 export const getCoordinates = async (
   controller: AbortController,
 ): Promise<IGetCoordinates> => {

@@ -3,16 +3,17 @@ import { URL_FORECAST } from "./listURL";
 import { WEATHER_API_KEY } from "../constants/weatherApiKey";
 import { IWeather } from "./typesWeather";
 
+/**
+ * @see https://www.weatherapi.com/api-explorer.aspx
+ */
 const getWeather = async ({
   lang,
   q,
   controller,
-  hour,
 }: {
   lang: string;
   q: string;
   controller: AbortController;
-  hour?: string;
 }) => {
   const urlOptions = [
     { name: "q", value: q },
@@ -20,10 +21,6 @@ const getWeather = async ({
     { name: "key", value: WEATHER_API_KEY },
     { name: "days", value: "3" },
   ];
-
-  if (hour) {
-    urlOptions.push({ name: "hour", value: hour });
-  }
 
   const url = buildUrlWithParams({
     base: URL_FORECAST,
@@ -34,6 +31,23 @@ const getWeather = async ({
     signal: controller.signal,
     method: "GET",
   });
+
+  if (!res.ok) {
+    const error = await res.json();
+    const errorArr = ["", res.status.toString()];
+
+    if (error?.error?.code) {
+      errorArr.push(error.error.code);
+    }
+
+    if (error?.error?.message) {
+      errorArr.push(error.error.message);
+    } else {
+      errorArr.push("No error message");
+    }
+
+    throw new Error(errorArr.join(": "));
+  }
 
   return res.json().then((data: IWeather) => ({
     data,

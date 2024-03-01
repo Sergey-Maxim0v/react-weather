@@ -79,6 +79,8 @@
 /*  Name */
 .name {
   grid-area: name;
+  max-width: 15rem;
+  word-break: break-word;
 }
 
 /*  City  */
