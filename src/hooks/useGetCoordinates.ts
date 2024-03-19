@@ -12,7 +12,6 @@ export const useGetCoordinates = () => {
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    let isMounted = true;
     const controller = new AbortController();
 
     const fetchData = async () => {
@@ -21,22 +20,16 @@ export const useGetCoordinates = () => {
       try {
         const response = await getCoordinates(controller);
 
-        if (isMounted) {
-          setCoordinates({
-            latitude: response.data.latitude,
-            longitude: response.data.longitude,
-          });
-          setError(undefined);
-        }
+        setCoordinates({
+          latitude: response.data.latitude,
+          longitude: response.data.longitude,
+        });
+        setError(undefined);
       } catch (error) {
-        if (isMounted) {
-          setError("ipapi.co: " + error);
-          console.warn("Error: getCoordinates :::", error);
-        }
+        setError("ipapi.co: " + error);
+        console.warn("Error: getCoordinates :::", error);
       } finally {
-        if (isMounted) {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
       }
     };
 
@@ -45,7 +38,6 @@ export const useGetCoordinates = () => {
     );
 
     return () => {
-      isMounted = false;
       controller.abort();
     };
   }, []);
