@@ -7,12 +7,15 @@ import ContentWeather from "../ContentWeather";
 
 import styles from "./styles.module.css";
 import { useGetWeather } from "../../hooks/useGetWeather";
+import { useConsoleLog } from "../../hooks/useConsoleLog";
 
 const Widget: FC<IWidget> = ({ size = WIDGET_SIZE.medium, className }) => {
   const ref: RefObject<HTMLDivElement> = useRef(null);
 
   const isVisible = useIsVisibleElement(ref);
   const { weather, isLoading, error } = useGetWeather({ isVisible });
+
+  useConsoleLog({ name: "weather", content: weather });
 
   const getContent = () => {
     if (weather && size) {
