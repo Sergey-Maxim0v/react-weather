@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 const Powered: FC<IPowered> = ({ className }) => {
   return (
-    <p className={className}>
+    <p className={`${className} ${styles.powered}`}>
       Powered by
       <a
         className={styles.link}

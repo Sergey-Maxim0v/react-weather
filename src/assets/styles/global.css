@@ -1,8 +1,15 @@
 .app {
-  font-family: sans-serif;
   padding: min(120px, 10vh) min(40px, 10vw);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-evenly;
+  font-family: sans-serif;
+}
+
+@media (max-width: 565px) {
+  .app {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
