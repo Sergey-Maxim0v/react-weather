@@ -6,6 +6,11 @@ export interface IUseCoordinates {
   longitude: number;
 }
 
+const defaultCoordinates: IUseCoordinates = {
+  latitude: 55.752947,
+  longitude: 37.621691,
+};
+
 export const useGetCoordinates = () => {
   const [coordinates, setCoordinates] = useState<IUseCoordinates | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +32,7 @@ export const useGetCoordinates = () => {
         setError(undefined);
       } catch (error) {
         setError("ipapi.co: " + error);
-        console.warn("Error: getCoordinates :::", error);
+        setCoordinates(defaultCoordinates);
       } finally {
         setIsLoading(false);
       }
